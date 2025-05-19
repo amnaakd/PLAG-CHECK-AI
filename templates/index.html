@@ -212,7 +212,8 @@
     <script>
       function highlightPlagiarizedText() {
         var queryText = document.getElementById("query-text").value;
-        var plagiarizedTexts = JSON.parse("{{ plagiarized_texts|tojson }}");
+  var plagiarizedTexts = JSON.parse('{{ plagiarized_texts if plagiarized_texts is defined else [] | tojson }}');
+
 
         plagiarizedTexts.forEach(function (text) {
           var regex = new RegExp(text, "gi");
